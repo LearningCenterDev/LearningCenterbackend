@@ -6,7 +6,7 @@ import { jwtAuthMiddleware, AuthenticatedRequest } from "../auth/jwt";
 const router = Router();
 
 // 1. Get enrollment requests with filters
-router.get("/requests", jwtAuthMiddleware, (async (req: any, res: Response) => {
+router.get("/requests", jwtAuthMiddleware as any, (async (req: any, res: Response) => {
     try {
         const { status, studentId, parentId } = req.query;
         let requests;
@@ -28,7 +28,7 @@ router.get("/requests", jwtAuthMiddleware, (async (req: any, res: Response) => {
 }) as any);
 
 // 2. Create new enrollment request
-router.post("/requests", jwtAuthMiddleware, (async (req: any, res: Response) => {
+router.post("/requests", jwtAuthMiddleware as any, (async (req: any, res: Response) => {
     try {
         const validatedData = insertEnrollmentRequestSchema.parse(req.body);
         const request = await storage.createEnrollmentRequest(validatedData);
@@ -40,7 +40,7 @@ router.post("/requests", jwtAuthMiddleware, (async (req: any, res: Response) => 
 }) as any);
 
 // 3. Parent approval workflow
-router.patch("/requests/:id/parent-approve", jwtAuthMiddleware, (async (req: any, res: Response) => {
+router.patch("/requests/:id/parent-approve", jwtAuthMiddleware as any, (async (req: any, res: Response) => {
     try {
         const requestId = req.params.id;
         const request = await storage.getEnrollmentRequest(requestId);
@@ -66,7 +66,7 @@ router.patch("/requests/:id/parent-approve", jwtAuthMiddleware, (async (req: any
 }) as any);
 
 // 4. Get student's enrollments
-router.get("/user/:userId", jwtAuthMiddleware, (async (req: any, res: Response) => {
+router.get("/user/:userId", jwtAuthMiddleware as any, (async (req: any, res: Response) => {
     try {
         const enrollments = await storage.getEnrollmentsByStudent(req.params.userId);
         res.json(enrollments);
