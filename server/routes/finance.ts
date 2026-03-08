@@ -5,7 +5,7 @@ import { jwtAuthMiddleware, AuthenticatedRequest, requireRole } from "../auth/jw
 const router = Router();
 
 // 1. Get all invoices (Admin/Finance Admin only)
-router.get("/invoices", jwtAuthMiddleware, requireRole("admin", "finance_admin"), (async (req: any, res: Response) => {
+router.get("/invoices", jwtAuthMiddleware as any, requireRole("admin", "finance_admin") as any, (async (req: any, res: Response) => {
     try {
         const invoices = await storage.getAllInvoices();
         res.json(invoices);
@@ -16,7 +16,7 @@ router.get("/invoices", jwtAuthMiddleware, requireRole("admin", "finance_admin")
 }) as any);
 
 // 2. Get all payments (Admin/Finance Admin only)
-router.get("/payments", jwtAuthMiddleware, requireRole("admin", "finance_admin"), (async (req: any, res: Response) => {
+router.get("/payments", jwtAuthMiddleware as any, requireRole("admin", "finance_admin") as any, (async (req: any, res: Response) => {
     try {
         const payments = await storage.getAllPayments();
         res.json(payments);
@@ -27,7 +27,7 @@ router.get("/payments", jwtAuthMiddleware, requireRole("admin", "finance_admin")
 }) as any);
 
 // 3. Get all fee plans
-router.get("/fee-plans", jwtAuthMiddleware, (async (req: any, res: Response) => {
+router.get("/fee-plans", jwtAuthMiddleware as any, (async (req: any, res: Response) => {
     try {
         const plans = await storage.getAllFeePlans();
         res.json(plans);
