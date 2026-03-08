@@ -1,0 +1,27 @@
+{
+  "version": "7",
+  "dialect": "postgresql",
+  "entries": [
+    {
+      "idx": 0,
+      "version": "7",
+      "when": 1762774112880,
+      "tag": "0000_small_doctor_strange",
+      "breakpoints": true
+    },
+    {
+      "idx": 1,
+      "version": "7",
+      "when": 1763009383506,
+      "tag": "0001_amusing_juggernaut",
+      "breakpoints": true
+    },
+    {
+      "idx": 2,
+      "version": "7",
+      "when": 1766309507881,
+      "tag": "0002_add_external_link_to_recurrences",
+      "breakpoints": true
+    }
+  ]
+}

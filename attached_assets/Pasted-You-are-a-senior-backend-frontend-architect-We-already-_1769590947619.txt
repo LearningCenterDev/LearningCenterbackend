@@ -1,0 +1,134 @@
+You are a senior backend & frontend architect.
+
+We already have an e-learning platform with dashboards for:
+- student
+- parent
+- teacher
+- finance admin
+- super admin
+
+We must implement a TIMEZONE-SAFE CLASS SCHEDULING SYSTEM.
+
+=====================
+NON-NEGOTIABLE RULE
+=====================
+
+- ALL class times must be stored in UTC.
+- ALL class times must be displayed in the user’s local timezone.
+- NEVER store local time alone.
+
+=====================
+SOURCE OF TRUTH
+=====================
+
+- Class schedule is defined by the PARTNER (learning center) timezone.
+- Admin timezone (Nepal) must NOT affect class time.
+- Teachers and students may be in different timezones.
+
+=====================
+DATABASE SCHEMA
+=====================
+
+Update classes table:
+
+classes:
+  id
+  partner_id
+  teacher_id
+  student_id
+  start_time_utc (timestamp)
+  end_time_utc (timestamp)
+  timezone_origin (string, IANA timezone like "America/Denver")
+  duration_minutes
+
+=====================
+CLASS CREATION FLOW
+=====================
+
+1. Partner admin selects:
+   - Date
+   - Time (local)
+   - Duration
+
+2. Partner timezone is auto-fetched from partner profile
+   (example: America/Denver)
+
+3. Backend converts:
+   local_time + timezone_origin → UTC
+
+4. Store:
+   start_time_utc
+   end_time_utc
+   timezone_origin
+
+=====================
+DISPLAY LOGIC
+=====================
+
+Frontend must:
+- Detect user timezone automatically (browser / mobile)
+- Convert UTC → user timezone
+
+Each role sees class time in their own timezone:
+- Student → student local time
+- Parent → parent local time
+- Teacher → teacher local time
+- Partner admin → partner timezone
+- Super admin → admin local timezone
+
+=====================
+NOTIFICATIONS
+=====================
+
+All reminders must be scheduled using:
+start_time_utc - X minutes
+
+Never schedule notifications using local time.
+
+=====================
+GOOGLE CALENDAR SYNC
+=====================
+
+When syncing classes to Google Calendar:
+
+Send:
+start.dateTime = start_time_utc
+start.timeZone = "UTC"
+
+Google handles local display automatically.
+
+=====================
+DAYLIGHT SAVING TIME
+=====================
+
+- Use IANA timezone names only
+- Do NOT use UTC offsets
+- System must auto-handle DST changes
+
+=====================
+TECH STACK REQUIREMENTS
+=====================
+
+Backend:
+- Node.js → luxon OR dayjs + timezone
+- OR Python → zoneinfo / pytz
+
+Frontend:
+- Intl.DateTimeFormat OR moment-timezone
+
+=====================
+SECURITY & CONSISTENCY
+=====================
+
+- Never double convert time
+- Conversion happens only at:
+  - class creation
+  - UI display
+
+=====================
+GOAL
+=====================
+
+Implement a global, DST-safe, timezone-aware scheduling system
+that works across US learning centers and Nepal-based admins
+without schedule conflicts or confusion.

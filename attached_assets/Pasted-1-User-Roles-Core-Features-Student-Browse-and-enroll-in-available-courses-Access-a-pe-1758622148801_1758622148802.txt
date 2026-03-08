@@ -1,0 +1,63 @@
+1. User Roles & Core Features:
+
+Student:
+
+Browse and enroll in available courses.
+
+Access a personalized dashboard with their schedule, progress tracking, and achievements.
+
+View and download student-wise learning materials.
+
+Upload homework and tests. View teacher comments and grades on their submissions.
+
+Parent:
+
+Dedicated view to monitor their child's/children's progress, grades, and attendance.
+
+Receive reviews and comments from teachers.
+
+Access a monthly performance report.
+
+Direct communication with teachers via in-app messaging.
+
+Receive real-time notifications for important updates (achievements, low grades, attendance issues, new reviews).
+
+Teacher:
+
+Manage courses: Upload and organize learning materials (documents, videos, links) for their classes.
+
+Create and grade tests & assignments. Add comments on submissions.
+
+Manage a dynamic schedule.
+
+Submit reviews and progress reports for individual students.
+
+Initiate communication with parents via messaging or request/initiate real-time voice/video calls.
+
+Upload a summary after every class (e.g., topics covered, homework assigned) which is automatically sent to parents.
+
+Cannot mark their attendance (check-out) until 45 minutes after their last class ends. The app must send a reminder notification when they are eligible to check out.
+
+Admin:
+
+Full CRUD (Create, Read, Update, Delete) operations for managing students, parents, teachers, and courses.
+
+Manage fee structures, payment status, and financial reports.
+
+Oversee system status, user activity, and generate analytics reports.
+
+Act as a super-user for resolving issues.
+
+2. Key System Functionality:
+
+Notifications: A centralized system for push notifications and in-app alerts for all users (e.g., new grade for student, progress report for parent, schedule change for teacher).
+
+Scheduling & Calendar:
+
+Automatic calendar updates for all users when a class is scheduled, rescheduled, or canceled.
+
+A robust system for teachers to send cancel/reschedule requests to the admin. Upon admin approval, the calendar is updated automatically, and notifications are sent to students and parents.
+
+Communication Hub: Secure in-app messaging and integrated real-time calling (Twilio/Agora.io) between teachers and parents. All communication must be logged.
+
+Content Management: Secure file upload/download for teachers (materials, homework, tests) and students (homework submissions). Support for PDF, DOCX, images, and video links.

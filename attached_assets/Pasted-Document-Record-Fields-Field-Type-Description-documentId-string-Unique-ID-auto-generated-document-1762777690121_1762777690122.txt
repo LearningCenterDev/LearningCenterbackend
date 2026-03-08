@@ -1,0 +1,44 @@
+Document Record Fields
+Field	Type	Description
+documentId	string	Unique ID (auto-generated).
+documentName	string	Title or name of the document (e.g., “Generation License 2025–2035”).
+documentType	string	Type (License, PPA, Permit, Drawing, Contract, SOP, Environmental Report, etc.).
+categoryId	string	Linked category ID for structured grouping.
+plantId	string	ID of the plant or facility the document is associated with.
+associatedAssetId	string	Optional – links document to a specific asset (e.g., Turbine-1).
+referenceNumber	string	License/PPA number or official reference.
+issuingAuthority	string	Government or regulatory body issuing the document.
+issueDate	timestamp	Date of issue.
+expiryDate	timestamp	Date of expiry (if applicable).
+validityPeriodMonths	number	Duration in months for quick reference.
+renewalRequired	boolean	True if renewal is needed before expiry.
+renewalReminderDays	number	Days before expiry to trigger a renewal alert (e.g., 30).
+status	string	Active / Expired / Under Review / Revoked.
+storageUrl	string	Secure Firebase Storage link to the document file (PDF, DOCX, etc.).
+fileType	string	e.g., “pdf”, “jpg”, “docx”.
+fileSize	number	Size in bytes or MB.
+uploadedBy	string	User ID who uploaded the file.
+approvedBy	string	Admin or supervisor who verified/approved the document.
+uploadDate	timestamp	Upload date.
+lastUpdated	timestamp	Last modified date.
+remarks	string	Notes about the document (e.g., “New tariff revision pending approval”).
+tags	array	List of keywords (e.g., ["license", "NEA", "PPA"]).
+isConfidential	boolean	Marks whether access is restricted to admins only.
+accessLevel	string	Public / Internal / Restricted.
+auditTrail	map	{createdBy, createdAt, lastAccessedBy, lastAccessedAt}
+🗃️ Document Categories
+Field	Type	Description
+categoryId	string	Unique category identifier.
+categoryName	string	Name of category (e.g., “Legal”, “Environmental”, “Technical”, “Financial”).
+description	string	Short description.
+createdBy	string	User who created the category.
+createdAt	timestamp	Record creation date.
+🔐 Security Rules Prompt
+
+Implement strict role-based access control:
+
+Admins: Full CRUD access to all documents.
+
+Super Admin (SaaS Operator): View and audit all organizations’ documents.
+
+Engineers / Technicians: Read-only access to plant-relevant technical documents (e.g., SOPs, Drawings).
