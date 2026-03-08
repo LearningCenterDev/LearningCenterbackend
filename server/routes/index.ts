@@ -7,6 +7,7 @@ import courseRoutes from "./courses";
 import uploadRoutes from "./uploads";
 import enrollmentRoutes from "./enrollments";
 import assignmentRoutes from "./assignments";
+import financeRoutes from "./finance";
 
 export function registerModularRoutes(app: Express) {
     // Enable CORS for frontend-backend separation
@@ -22,4 +23,5 @@ export function registerModularRoutes(app: Express) {
     app.use("/api/upload", uploadRoutes);
     app.use("/api/enrollments", enrollmentRoutes);
     app.use("/api/assignments", assignmentRoutes);
+    app.use("/api/finance", financeRoutes);
 }
